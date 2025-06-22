@@ -1,0 +1,13 @@
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 100
+restartPolicyType = "ON_FAILURE"
+startCommand = "gunicorn --bind 0.0.0.0:$PORT --workers 1 --timeout 300 --max-requests 50 app:app"
+
+[env]
+NIXPACKS_PYTHON_VERSION = "3.10"
+WHISPER_MODEL = "base"
+PYTHONUNBUFFERED = "1"
